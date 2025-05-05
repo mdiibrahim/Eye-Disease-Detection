@@ -13,7 +13,6 @@ body {
     overflow-y: auto;  /* ✅ allows vertical scrolling */
 }
 
-
 /* Background Image with Blur */
 body::before {
     content: "";
@@ -27,7 +26,6 @@ body::before {
     z-index: -1;
 }
 
-/* Title Styling - Centered at the Top */
 .header {
     top: 5%;
     left: 50%;
@@ -40,26 +38,20 @@ body::before {
     margin-bottom: 20px;
     color: #00ffd5;
     text-align: center;
+    animation: fadeInEyes 2s ease-in-out;
 }
 
-
-
-
-/* Smooth Fade-in Animation */
-@keyframes fadeInSmooth {
-    from {
+@keyframes fadeInEyes {
+    0% {
         opacity: 0;
-        transform: translateY(-15px); /* ✅ vertical only */
+        transform: scale(0.8) rotateX(90deg);
     }
-    to {
+    100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1) rotateX(0deg);
     }
 }
 
-
-
-/* Form Styling */
 form {
     background: rgba(255, 255, 255, 0.18);
     padding: 25px;
@@ -70,13 +62,13 @@ form {
     width: 90%;
     max-width: 420px;
     margin-top: 100px; /* Ensures spacing below the title */
+    animation: fadeInEyes 1.5s ease-in-out;
 }
 
 form:hover {
     transform: scale(1.05);
 }
 
-/* Custom File Upload */
 .file-upload {
     display: flex;
     align-items: center;
@@ -86,14 +78,12 @@ form:hover {
     margin: 15px;
 }
 
-/* Hide Default Input */
 .file-upload input[type="file"] {
     display: none;
 }
 
-/* Custom Upload Button */
 .file-upload label {
-    background: linear-gradient(135deg, #ff6f61, #d43f00);
+    background: linear-gradient(135deg, #42e695, #3bb2b8);
     color: white;
     padding: 14px 22px;
     font-size: 18px;
@@ -103,14 +93,23 @@ form:hover {
     display: inline-block;
     font-weight: bold;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    animation: pulseEyes 2s infinite;
 }
 
 .file-upload label:hover {
-    background: linear-gradient(135deg, #e64a41, #a83200);
+    background: linear-gradient(135deg, #2dc197, #2d9ca6);
     transform: scale(1.1);
 }
 
-/* Display Uploaded File Name */
+@keyframes pulseEyes {
+    0%, 100% {
+        box-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5;
+    }
+    50% {
+        box-shadow: 0 0 20px #3bb2b8, 0 0 30px #3bb2b8;
+    }
+}
+
 #file-name {
     font-size: 16px;
     color: #fff;
@@ -122,9 +121,8 @@ form:hover {
     transition: all 0.3s ease-in-out;
 }
 
-/* Upload & Predict Button */
 button {
-    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     color: white;
     border: none;
     padding: 14px 22px;
@@ -134,14 +132,14 @@ button {
     transition: background 0.3s, transform 0.2s;
     font-weight: bold;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    animation: pulseEyes 2.5s infinite;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #0057e1, #009fdd);
+    background: linear-gradient(135deg, #ff5f7e, #f95c9c);
     transform: scale(1.1);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .header {
         font-size: 28px;
@@ -157,6 +155,7 @@ button:hover {
         padding: 12px 18px;
     }
 }
+
 .description {
     background: rgba(255, 255, 255, 0.2);
     padding: 20px;
@@ -183,27 +182,8 @@ button:hover {
 }
 
 /* Stylish Description Section */
-.stylish-description {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 30px 40px;
-    border-radius: 16px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    max-width: 720px;
-    margin: 60px auto;
-    color: #ffffff;
-    text-align: left;
-    animation: fadeInSmooth 1s ease-in-out;
-    line-height: 1.7;
-}
 
-/* Title styling */
-.stylish-description h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
-    color: #00ffd5;
-    text-align: center;
-}
+
 
 /* List reset and spacing */
 .stylish-description ul {
@@ -227,28 +207,35 @@ button:hover {
     font-weight: bold;
 }
 
-.info-section {
-    background: rgba(0, 0, 0, 0.3); /* semi-transparent dark background */
+.info-section,
+.stylish-description {
+    background: rgba(0, 0, 0, 0.3);
     padding: 30px;
     border-radius: 18px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    max-width: 700px;
-    margin: 60px auto 40px auto;
+    max-width: 720px;
+    margin: 60px auto;
     color: #fff;
     text-align: left;
     font-size: 16px;
     line-height: 1.6;
-
+    animation: fadeInSmooth 1s ease-in-out;
 }
 
-/* Eye Disease Title */
-.info-section h2 {
+.info-section h2,
+.stylish-description h2 {
     font-size: 30px;
     margin-bottom: 20px;
     color: #00ffd5;
     text-align: center;
 }
+.info-section, .stylish-description {
+    animation: fadeInSmooth 1s ease-in-out;
+}
+
+
+
 
 /* Disease Subheadings */
 .info-section h3 {
@@ -300,18 +287,25 @@ button:hover {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #0072ff, #00c6ff);
+     background: linear-gradient(135deg, #ff758c, #ff7eb3);
     color: white;
-    padding: 12px 24px;
-    border-radius: 10px;
+    border: none;
+    padding: 14px 22px;
+    font-size: 18px;
+    cursor: pointer;
     text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s;
     font-weight: bold;
-    transition: background 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    animation: pulseEyes 2.5s infinite;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #005fcb, #00a5d1);
+     background: linear-gradient(135deg, #ff5f7e, #f95c9c);
+    transform: scale(1.1);
 }
+
 .prediction-row {
     display: flex;
     justify-content: center;
