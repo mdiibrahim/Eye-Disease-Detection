@@ -98,7 +98,7 @@ This project is open for contributions! If you have suggestions, fixes, or ideas
 issue or PR.
 
 - 📧 Email: mdiibrahim549@gmail.com
-- 💼 LinkedIn: [Md Ibrahim](https://www.linkedin.com/in/mdiibrahim/)
+- 💼 LinkedIn: [Mohammad Ibrahim](https://www.linkedin.com/in/mdiibrahim/)
 
 ---
 
