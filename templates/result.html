@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Sticky header -->
+    <div class="header">🧠 Prediction Result</div>
+
+    <!-- Result Container -->
+    <div class="result-card">
+        <img src="{{ img_path }}" alt="Uploaded Image" class="preview-image">
+
+        <div class="prediction-row">
+            <h2 class="result-title">Detected Condition:</h2>
+            <h3 class="predicted-label">{{ result }}</h3>
+        </div>
+
+        <p style="color: #ccc;">Confidence: {{ '%.2f'|format(confidence) }}%</p>
+{% if confidence < 0.70 %}
+    <p style="color: #ffcc00;"><strong>⚠️ This prediction has low confidence. Please verify with a clearer image or consult a specialist.</strong></p>
+{% endif %}
+        {% if result == "Unknown" %}
+            <p style="color: orange; font-weight: bold;">⚠️ The model is unsure about this image. Please consult an eye specialist for confirmation.</p>
+        {% endif %}
+    </div>
+
+    <!-- Informational Text -->
+    <section class="info-section">
+        <p>This result is generated using a deep convolutional neural network (CNN) trained on thousands of annotated retinal images to classify common eye conditions including:</p>
+        <ul>
+            <li><strong>Cataract</strong> – Clouding of the lens</li>
+            <li><strong>Diabetic Retinopathy</strong> – Retinal blood vessel damage</li>
+            <li><strong>Glaucoma</strong> – Optic nerve pressure damage</li>
+            <li><strong>Normal</strong> – Healthy retinal appearance</li>
+            <li><strong>Unknown</strong> – Image does not resemble known conditions</li>
+        </ul>
+        <p><strong>Note:</strong> This is an AI-based prediction and should not be considered a substitute for medical advice. Please consult an ophthalmologist for an official diagnosis.</p>
+    </section>
+
+    <div style="margin-top: 30px;">
+        <a href="/" class="btn-primary">🔄 Try Another Image</a>
+    </div>
+</body>
+</html>

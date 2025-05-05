@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eye Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+   <div class="header">Eye Disease Detection Web App</div>
+
+<!-- Spacer for visual separation -->
+<div class="spacer"></div>
+
+
+
+<!-- Description Section -->
+<section class="description stylish-description">
+    <h2>🔬 What This App Does</h2>
+    <p>This AI-powered system analyzes retinal images and detects the following eye conditions using a deep learning model:</p>
+    <ul>
+        <li><strong>👁 Cataract</strong> – Clouding of the eye lens, blurs vision</li>
+        <li><strong>🩸 Diabetic Retinopathy</strong> – Damage to retina from high blood sugar</li>
+        <li><strong>🌫 Glaucoma</strong> – Pressure-induced optic nerve damage</li>
+        <li><strong>✅ Normal</strong> – No signs of disease, healthy retina</li>
+        <li><strong>❓ Unknown</strong> – The model couldn’t confidently match this image to any known disease class</li>
+
+    </ul>
+</section>
+
+   <!-- Upload Form -->
+   <form action="/" method="POST" enctype="multipart/form-data" class="form-glass info-section">
+    <div class="file-upload">
+        <label for="file">Choose Image</label>
+        <input type="file" name="file" id="file" required onchange="displayFileNameAndPreview(this)">
+        <span id="file-name">No file chosen</span>
+
+        <!-- 🖼️ Preview will appear here -->
+        <img id="preview-image" src="#" alt="Image Preview" style="display:none; margin-top: 15px; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+    </div>
+    <button type="submit">Upload & Predict</button>
+</form>
+
+
+    <!-- Detailed Eye Disease Info -->
+<section class="info-section">
+    <h2>🧠 About Eye Diseases</h2>
+
+    <!-- Cataract -->
+    <h3>1. 👁️ Cataract</h3>
+    <p>
+        A cataract is the clouding of the eye's natural lens, which lies behind the iris and the pupil. It develops gradually and impairs vision over time. Most cataracts are age-related, but other causes include trauma, UV radiation, prolonged steroid use, or congenital conditions.
+        <span class="see-more-link" onclick="toggleDetails('cataract-details', this)">See More</span>
+    </p>
+    <div class="more-info" id="cataract-details" style="display: none;">
+        <p><strong>Common Symptoms:</strong> Blurry vision, glare or halos around lights, faded colors, and difficulty seeing at night.</p>
+        <p><strong>Prevention & Treatment:</strong> Wearing UV-protective eyewear can help slow cataract development. The only effective treatment is cataract surgery, which involves replacing the cloudy lens with an artificial intraocular lens (IOL).</p>
+    </div>
+
+    <!-- Diabetic Retinopathy -->
+    <h3>2. 🩸 Diabetic Retinopathy</h3>
+    <p>
+Diabetic Retinopathy is a complication of diabetes that affects the eyes. High blood sugar levels damage the tiny blood vessels in the retina, leading to leakage, swelling, and even closure of the vessels.        <span class="see-more-link" onclick="toggleDetails('dr-details', this)">See More</span>
+    </p>
+    <div class="more-info" id="dr-details" style="display: none;">
+        <p><strong>Common Symptoms:</strong> Floaters, blurred or fluctuating vision, dark spots, and vision loss in later stages.</p>
+        <p><strong>Prevention & Treatment:</strong> Control blood sugar levels, regular retinal exams, laser therapy, anti-VEGF injections, or surgery if needed.</p>
+    </div>
+
+    <!-- Glaucoma -->
+    <h3>3. 🌫️ Glaucoma</h3>
+    <p>
+Glaucoma is a group of eye diseases that damage the optic nerve, usually due to increased intraocular pressure (IOP). It's known as the "silent thief of sight" because it often causes no symptoms until irreversible damage has occurred.        <span class="see-more-link" onclick="toggleDetails('glaucoma-details', this)">See More</span>
+    </p>
+    <div class="more-info" id="glaucoma-details" style="display: none;">
+        <p><strong>Symptoms:</strong> Often none early on; later peripheral vision loss, tunnel vision, or sudden pain in acute cases.</p>
+        <p><strong>Prevention & Treatment:</strong> Regular eye pressure checkups, eye drops, laser therapy, or surgery to prevent further nerve damage.</p>
+    </div>
+
+    <!-- Normal Retina -->
+    <h3>4. ✅ Normal Retina</h3>
+    <p>
+A healthy retina shows no signs of vascular damage, hemorrhaging, swelling, or nerve degeneration. Maintaining eye health involves regular eye exams, especially for those with risk factors like diabetes or high blood pressure.        <span class="see-more-link" onclick="toggleDetails('normal-details', this)">See More</span>
+    </p>
+    <div class="more-info" id="normal-details" style="display: none;">
+        <p><strong>Tips for Eye Health:</strong> Eat leafy greens and omega-3 rich foods, manage screen time, avoid smoking, wear UV-blocking sunglasses, and get yearly eye exams.</p>
+    </div>
+<!-- Unknown -->
+<h3>5. ❓ Unknown</h3>
+<p>
+    Sometimes the uploaded image doesn't clearly resemble any of the trained disease categories. This can happen due to poor image quality, lighting issues, or if the retina shows unfamiliar patterns not present in the training dataset.
+    <span class="see-more-link" onclick="toggleDetails('unknown-details', this)">See More</span>
+</p>
+<div class="more-info" id="unknown-details" style="display: none;">
+    <p><strong>What it means:</strong> The model is unsure or has low confidence in matching this image to a known disease class.</p>
+    <p><strong>Suggestions:</strong> Make sure the image is a clear retinal scan. If you're certain the image is valid, consult a medical professional for further evaluation.</p>
+</div>
+    <hr style="margin: 40px 0; border-color: rgba(255, 255, 255, 0.2);">
+
+    <!-- AI Model Explanation -->
+    <h2>🧪 How the AI Model Works</h2>
+<p>
+    This app uses a deep learning model based on the <strong>VGG16 architecture</strong>, fine-tuned to classify common retinal diseases and recognize uncertain or out-of-distribution images.
+</p>
+<ul>
+    <li><strong>1. Image Preprocessing:</strong> Uploaded images are resized to <code>224x224</code> pixels and normalized to match training conditions.</li>
+    <li><strong>2. Feature Extraction:</strong> The VGG16 base captures fine-grained features from retinal scans—like vessel shape, texture, or lesions.</li>
+    <li><strong>3. Classification:</strong> A custom classification head predicts probabilities across five categories: <strong>Cataract, Diabetic Retinopathy, Glaucoma, Normal, and Unknown</strong>.</li>
+    <li><strong>4. Output:</strong> The result with the highest confidence is displayed, including its probability score. If the model cannot confidently match the input to a known class, it predicts <strong>"Unknown"</strong>.</li>
+</ul>
+<p>
+    This approach helps reduce misdiagnosis by flagging uncertain or outlier images instead of forcing a wrong prediction. However, predictions should always be verified by an eye care specialist.
+</p>
+
+</section>
+
+
+
+
+
+
+    <script>
+    function displayFileNameAndPreview(input) {
+        const file = input.files[0];
+        const fileName = document.getElementById('file-name');
+        const preview = document.getElementById('preview-image');
+
+        if (file) {
+            fileName.textContent = file.name;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        } else {
+            fileName.textContent = "No file chosen";
+            preview.style.display = "none";
+        }
+    }
+</script>
+<script>
+    function toggleDetails(id, el) {
+        const section = document.getElementById(id);
+        if (section.style.display === "none") {
+            section.style.display = "block";
+            el.textContent = "See Less";
+        } else {
+            section.style.display = "none";
+            el.textContent = "See More";
+        }
+    }
+</script>
+
+
+
+</body>
+</html>
