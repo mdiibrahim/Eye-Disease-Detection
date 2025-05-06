@@ -1,128 +1,141 @@
-/* General Styles */
+/* 🎨 General layout and appearance for the entire page */
 body {
-    font-family: "Poppins", sans-serif;
-    text-align: center;
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;  /* changed from center to start */
-    position: relative;
-    padding: 20px;
-    overflow-y: auto;  /* ✅ allows vertical scrolling */
+    font-family: "Poppins", sans-serif;       /* Stylish, readable font */
+    text-align: center;                        /* Center text by default */
+    color: white;                              /* Text color */
+    min-height: 100vh;                         /* Full screen height */
+    display: flex;                             /* Use flexbox layout */
+    flex-direction: column;                   /* Stack children vertically */
+    align-items: center;                      /* Center items horizontally */
+    justify-content: start;                   /* Align top vertically */
+    position: relative;                        /* Allows pseudo-elements like ::before */
+    padding: 20px;                             /* Padding around the page */
+    overflow-y: auto;                          /* Enable vertical scrolling if content overflows */
 }
 
-/* Background Image with Blur */
+/* 🖼️ Background Image with Blur and Darkening */
 body::before {
-    content: "";
+    content: "";                               /* Required for pseudo-element */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('https://images.pexels.com/photos/801867/pexels-photo-801867.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center/cover;
-    filter: blur(8px) brightness(60%);
-    z-index: -1;
+    background: url('https://images.unsplash.com/photo-1617339860632-f53c5b5dce4d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+        no-repeat center center/cover;         /* Cover the screen with the image */
+    filter: blur(8px) brightness(60%);         /* Blur + darken the background */
+    z-index: -1;                               /* Send it behind everything else */
 }
 
+/* 🧠 Stylish header at the top of the page */
 .header {
-    top: 5%;
-    left: 50%;
-    font-size: 36px;
+    top: 5%;                                   /* Spacing from top */
+    left: 50%;                                 /* Not really necessary unless using position */
+    font-size: 36px;                           /* Big font */
     font-weight: bold;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);            /* Semi-transparent dark background */
     padding: 15px 30px;
-    border-radius: 12px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
-    margin-bottom: 20px;
-    color: #00ffd5;
+    border-radius: 12px;                       /* Rounded corners */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);/* Soft shadow behind */
+    margin-bottom: 20px;                       /* Space below */
+    color: #00ffd5;                            /* Neon turquoise text */
     text-align: center;
-    animation: fadeInEyes 2s ease-in-out;
+    animation: fadeInEyes 2s ease-in-out;      /* Apply fade/rotate animation */
 }
 
+/* ✨ Animation for fading and rotating in */
 @keyframes fadeInEyes {
     0% {
         opacity: 0;
-        transform: scale(0.8) rotateX(90deg);
+        transform: scale(0.8) rotateX(90deg);  /* Start small and rotated */
     }
     100% {
         opacity: 1;
-        transform: scale(1) rotateX(0deg);
+        transform: scale(1) rotateX(0deg);     /* Return to normal size and upright */
     }
 }
 
+/* 📤 Upload form style */
 form {
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.18);      /* Frosted glass style */
     padding: 25px;
     border-radius: 14px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease-in-out;
+    backdrop-filter: blur(15px);               /* Adds blur effect behind the form */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);/* Soft drop shadow */
+    transition: transform 0.3s ease-in-out;     /* Smooth scaling on hover */
     width: 90%;
-    max-width: 420px;
-    margin-top: 100px; /* Ensures spacing below the title */
-    animation: fadeInEyes 1.5s ease-in-out;
+    max-width: 420px;                           /* Responsive max width */
+    margin-top: 100px;                          /* Space from the top */
+    animation: fadeInEyes 1.5s ease-in-out;     /* Animate when loaded */
 }
 
+/* 🔍 Slight zoom when hovering over the form */
 form:hover {
-    transform: scale(1.05);
+    transform: scale(1.05);                     /* Grows slightly on hover */
 }
 
+
+/* 📤 Upload box container */
 .file-upload {
-    display: flex;
+    display: flex;                          /* Stack label + file name vertically */
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 12px;
+    gap: 12px;                              /* Space between label and file name */
     margin: 15px;
 }
 
+/* 👻 Hide the default file input button */
 .file-upload input[type="file"] {
-    display: none;
+    display: none;                          /* Hidden so we can style the label as the trigger */
 }
 
+/* 🟢 Styled upload button (the label) */
 .file-upload label {
-    background: linear-gradient(135deg, #42e695, #3bb2b8);
+    background: linear-gradient(135deg, #42e695, #3bb2b8); /* Green-blue gradient */
     color: white;
     padding: 14px 22px;
     font-size: 18px;
-    cursor: pointer;
+    cursor: pointer;                        /* Hand cursor on hover */
     border-radius: 8px;
     transition: background 0.3s, transform 0.2s;
     display: inline-block;
     font-weight: bold;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
-    animation: pulseEyes 2s infinite;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3); /* Slight shadow */
+    animation: pulseEyes 2s infinite;       /* Glowing effect animation */
 }
 
+/* 🖱️ Hover effect for upload button */
 .file-upload label:hover {
-    background: linear-gradient(135deg, #2dc197, #2d9ca6);
-    transform: scale(1.1);
+    background: linear-gradient(135deg, #2dc197, #2d9ca6); /* Darker shade on hover */
+    transform: scale(1.1);                 /* Slight zoom on hover */
 }
 
+/* ✨ Glowing animation for buttons */
 @keyframes pulseEyes {
     0%, 100% {
-        box-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5;
+        box-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5; /* Neon blue outer glow */
     }
     50% {
-        box-shadow: 0 0 20px #3bb2b8, 0 0 30px #3bb2b8;
+        box-shadow: 0 0 20px #3bb2b8, 0 0 30px #3bb2b8; /* Aqua glow at mid-pulse */
     }
 }
 
+/* 📄 Text showing the chosen file name */
 #file-name {
     font-size: 16px;
     color: #fff;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6);         /* Semi-transparent dark background */
     padding: 8px 14px;
     border-radius: 6px;
     max-width: 80%;
-    word-wrap: break-word;
+    word-wrap: break-word;                  /* Wrap long filenames */
     transition: all 0.3s ease-in-out;
 }
 
+/* 🔘 Submit button styling */
 button {
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3); /* Pink gradient */
     color: white;
     border: none;
     padding: 14px 22px;
@@ -131,15 +144,17 @@ button {
     border-radius: 8px;
     transition: background 0.3s, transform 0.2s;
     font-weight: bold;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    animation: pulseEyes 2.5s infinite;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Shadow like the label */
+    animation: pulseEyes 2.5s infinite;         /* Slightly slower pulse than label */
 }
 
+/* 🖱️ Hover effect for submit button */
 button:hover {
-    background: linear-gradient(135deg, #ff5f7e, #f95c9c);
+    background: linear-gradient(135deg, #ff5f7e, #f95c9c); /* Brighter pink on hover */
     transform: scale(1.1);
 }
 
+/* 📱 Responsive design for tablets and phones */
 @media (max-width: 768px) {
     .header {
         font-size: 28px;
@@ -147,147 +162,149 @@ button:hover {
     }
 
     form {
-        width: 95%;
+        width: 95%;                          /* Make form wider on small screens */
     }
 
     .file-upload label, button {
         font-size: 16px;
-        padding: 12px 18px;
+        padding: 12px 18px;                  /* Slightly smaller buttons for mobile */
     }
 }
 
+
+/* 📝 Basic Description Box Styling */
 .description {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);      /* Semi-transparent white background */
     padding: 20px;
-    border-radius: 12px;
-    margin: 20px 0;
-    max-width: 600px;
+    border-radius: 12px;                       /* Rounded corners */
+    margin: 20px 0;                            /* Space above and below */
+    max-width: 600px;                          /* Prevents overly wide blocks */
     color: #fff;
     text-align: left;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);               /* Glassmorphism blur effect */
 }
 
+/* 📋 Default bullet list inside .description */
 .description ul {
-    list-style: square;
-    padding-left: 20px;
+    list-style: square;                        /* Square bullets */
+    padding-left: 20px;                        /* Indent list items */
 }
 
-
-
-
-
-/* Spacer to push description below the header */
+/* ⬇️ Spacer to push content below the header visually */
 .spacer {
-    height: 35px;
+    height: 35px;                              /* Empty vertical space */
 }
 
-/* Stylish Description Section */
-
-
-
-/* List reset and spacing */
+/* 🎨 Custom Styled List (removes default bullets) */
 .stylish-description ul {
-    list-style: none;
-    padding-left: 0;
+    list-style: none;                          /* Remove default bullets */
+    padding-left: 0;                           /* Remove default indentation */
 }
 
+/* 🟢 Each item in stylish list gets spacing and custom bullet */
 .stylish-description li {
     margin: 12px 0;
     font-size: 18px;
-    padding-left: 12px;
-    position: relative;
+    padding-left: 12px;                        /* Space to make room for custom bullet */
+    position: relative;                        /* So the ::before bullet can be positioned */
 }
 
-/* Optional: Add a custom bullet style */
+/* 🟡 Custom bullet style for .stylish-description list items */
 .stylish-description li::before {
-    content: "•";
+    content: "•";                              /* Bullet character */
     position: absolute;
     left: 0;
-    color: #00ffd5;
+    color: #00ffd5;                            /* Neon blue-green color */
     font-weight: bold;
 }
 
+/* 📦 Shared styling for info containers */
 .info-section,
 .stylish-description {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3);            /* Semi-transparent black */
     padding: 30px;
     border-radius: 18px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);               /* Glass effect */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* Soft drop shadow */
     max-width: 720px;
-    margin: 60px auto;
+    margin: 60px auto;                         /* Center with top-bottom spacing */
     color: #fff;
     text-align: left;
     font-size: 16px;
-    line-height: 1.6;
-    animation: fadeInSmooth 1s ease-in-out;
+    line-height: 1.6;                          /* Better readability */
+    animation: fadeInSmooth 1s ease-in-out;    /* Smooth fade on load */
 }
 
+/* 🔠 Section headings inside info and description blocks */
 .info-section h2,
 .stylish-description h2 {
     font-size: 30px;
     margin-bottom: 20px;
-    color: #00ffd5;
-    text-align: center;
+    color: #00ffd5;                            /* Bright aqua for titles */
+    text-align: center;                        /* Centered titles */
 }
+
+/* ✨ Smooth fade-in animation for main content blocks */
 .info-section, .stylish-description {
     animation: fadeInSmooth 1s ease-in-out;
 }
 
-
-
-
-/* Disease Subheadings */
+/* 🧩 Disease Subheadings Style */
 .info-section h3 {
     margin-top: 24px;
     font-size: 20px;
 }
 
-/* Add individual colors for diseases if needed */
+/* 🎨 Custom color for each disease heading */
 .info-section h3:nth-of-type(1) { color: #00ccff; } /* Cataract */
 .info-section h3:nth-of-type(2) { color: #00ffcc; } /* Diabetic Retinopathy */
 .info-section h3:nth-of-type(3) { color: #66ff66; } /* Glaucoma */
 .info-section h3:nth-of-type(4) { color: #ffff66; } /* Normal */
 
+/* 🧊 Frosted glass form styling */
 .form-glass {
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
+    backdrop-filter: blur(12px);                 /* Glass effect */
+    -webkit-backdrop-filter: blur(12px);         /* Safari support */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+/* 🧠 Result card (used on result.html) */
 .result-card {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3);               /* Transparent black */
     backdrop-filter: blur(12px);
     border-radius: 16px;
     max-width: 500px;
     margin: 20px auto 10px auto;
     text-align: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);     /* Stronger shadow for emphasis */
 }
 
+/* 🖼️ Image preview styling */
 .preview-image {
     width: 300px;
     border-radius: 12px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 }
 
+/* 🔠 Title text before prediction */
 .result-title {
     font-size: 20px;
     color: #ffffff;
     margin: 0;
 }
 
+/* 🔮 Highlighted prediction result */
 .predicted-label {
     font-size: 22px;
-    color: #00ffd5;
+    color: #00ffd5;                               /* Neon greenish */
     margin: 0;
 }
 
+/* 🔁 Primary button (Try another / Submit) */
 .btn-primary {
-     background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3); /* Pink gradient */
     color: white;
     border: none;
     padding: 14px 22px;
@@ -301,19 +318,23 @@ button:hover {
     animation: pulseEyes 2.5s infinite;
 }
 
+/* 🖱️ Hover effect for the button */
 .btn-primary:hover {
-     background: linear-gradient(135deg, #ff5f7e, #f95c9c);
+    background: linear-gradient(135deg, #ff5f7e, #f95c9c);
     transform: scale(1.1);
 }
 
+/* 🔳 Layout for prediction label and title */
 .prediction-row {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap;
+    flex-wrap: wrap;                            /* Makes it responsive */
     margin-top: 20px;
 }
+
+/* 🔍 'See More' toggle link */
 .see-more-link {
     color: #00ffd5;
     cursor: pointer;
@@ -327,3 +348,15 @@ button:hover {
     color: #00c5b5;
 }
 
+/* 📤 Submit button state styling */
+#submit-button {
+    transition: all 0.3s ease;
+}
+
+/* 🚫 Disabled submit button appearance */
+#submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: linear-gradient(135deg, #cccccc, #999999); /* Greyed out */
+    color: #444;
+}

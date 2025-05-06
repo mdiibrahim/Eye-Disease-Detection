@@ -1,0 +1,33 @@
+<!-- templates/partials/_how_it_works.html -->
+
+<!-- 🤖 Explains how the deep learning model processes images and predicts disease -->
+
+<section class="info-section">
+
+
+    <h2>🧪 How the AI Model Works</h2>
+    <p>
+        This app uses a deep learning model based on the <strong>VGG16 architecture</strong>, fine-tuned to classify
+        common retinal diseases and recognize uncertain or out-of-distribution images.
+    </p>
+    <ul>
+        <li><strong>1. Image Preprocessing:</strong> Uploaded images are resized to <code>224x224</code> pixels and
+            normalized to match training conditions.
+        </li>
+        <li><strong>2. Feature Extraction:</strong> The VGG16 base captures fine-grained features from retinal
+            scans—like vessel shape, texture, or lesions.
+        </li>
+        <li><strong>3. Classification:</strong> A custom classification head predicts probabilities across five
+            categories: <strong>Cataract, Diabetic Retinopathy, Glaucoma, Normal, and Unknown</strong>.
+        </li>
+        <li><strong>4. Output:</strong> The result with the highest confidence is displayed, including its probability
+            score. If the model cannot confidently match the input to a known class, it predicts
+            <strong>"Unknown"</strong>.
+        </li>
+    </ul>
+    <p>
+        This approach helps reduce misdiagnosis by flagging uncertain or outlier images instead of forcing a wrong
+        prediction. However, predictions should always be verified by an eye care specialist.
+    </p>
+
+</section>

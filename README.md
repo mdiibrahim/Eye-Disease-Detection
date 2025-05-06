@@ -1,4 +1,4 @@
-# 🧠 Eye Disease Detection - Deep Learning Flask App
+# 👀 Eye Disease Detection - Deep Learning Flask App
 
 This is an AI-powered web application for detecting eye diseases from retinal images. It uses a custom-trained CNN based
 on the VGG16 architecture.
@@ -44,15 +44,21 @@ Hosted on [Render](https://render.com) — no installation needed.
 
 ```
 .
-├── app.py                      # Flask web app
+├── app.py                             # Flask web app
 ├── templates/
-│   ├── index.html              # Upload page
-│   └── result.html             # Result page
+│   ├── index.html                     # Upload page
+│   ├── result.html                    # Result page
+│   └── partials/
+│       ├── _disease_info.html         # Info about eye diseases
+│       └── _how_it_works.html         # Model explanation section
 ├── static/
-│   └── styles.css              # Custom styles
+│   ├── styles.css                     # Custom styles
+│   └── js/
+│       └── main.js                    # JavaScript for interactivity
 ├── models/
-│   ├── eye_disease_model.h5    # Trained model (downloaded automatically)
+│   ├── eye_disease_model.h5          # Trained model (downloaded automatically)
 │   └── eye_diseases_detection_vgg16.ipynb # Model training notebook
+└── requirements.txt                  # Required Python packages
 ```
 
 ---
